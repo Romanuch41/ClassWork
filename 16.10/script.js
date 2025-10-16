@@ -73,6 +73,10 @@ function cloneObjectTwo(obj)
         {
             const keyUpper = key[0].toUpperCase() + key.slice(1);
             newObject[keyUpper] = obj[key];
+            if (typeof newObject[keyUpper] === "object")
+            {
+                newObject[keyUpper] = cloneObjectTwo(newObject[keyUpper]);
+            }
         }
     }
 
