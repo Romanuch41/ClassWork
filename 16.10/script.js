@@ -36,3 +36,51 @@ console.log({"'count' in array": 'count' in array})
 console.log({"Object.hasOwn(array, 'count')": Object.hasOwn(array, 'count')})
 
 console.log({'Object.entries(array)': Object.entries(array)})
+
+const address = {
+    city : 'Irkutsk',
+    street : "Lenina",
+    home : "5"
+}
+const user = {
+    address
+}
+
+console.log(user);
+
+const user_clone = structuredClone(user);
+
+console.log(user_clone);
+
+function cloneObject(obj) {
+    let keys = Object.keys(obj);
+    const newObject = {};
+    for (let i = 0; i < keys.length; i++)
+    {
+        const keyUpper = keys[i][0].toUpperCase() + keys[i].slice(1);
+        newObject[keyUpper] = obj[keys[i]];
+    }
+
+    return newObject;
+}
+
+function cloneObjectTwo(obj)
+{
+    const newObject = {};
+    for (let key in obj)
+    {
+        if (Object.hasOwn(obj, key))
+        {
+            const keyUpper = key[0].toUpperCase() + key.slice(1);
+            newObject[keyUpper] = obj[key];
+        }
+    }
+
+    return newObject;
+}
+
+const fcloneObj = cloneObject(user);
+console.log(fcloneObj);
+
+const cloneTwo = cloneObjectTwo(user);
+console.log(cloneTwo);
